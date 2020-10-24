@@ -1,0 +1,131 @@
+// @import "compass/css3";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+@mixin navHover($trans, $width) {
+  left: $trans + 2.1rem;
+  width: $width;
+
+  &:hover {
+    ~ .magic {
+      transform: translateX($trans);
+      width: $width;
+
+      .clone {
+        transform: translateX(0 - $trans);
+      }
+    }
+  }
+}
+html, body {
+  height: 100%;
+  font-size: 62.5%;
+  background: #64B5F6;
+  overflow: hidden;
+  
+  @media (max-width: 600px) {
+    & {font-size: 50%;}
+  }
+  @media (max-width: 480px) {
+    & {font-size: 40%;}
+  }
+}
+.nav {
+  position: relative;
+  width: 55rem;
+  height: 5rem;
+  margin: 10rem auto 0;
+  padding: 0 1rem;
+  background: #25f1b0;
+  transform: skewX(-30deg);
+  text-align: center;
+  border-radius: 0.5rem;
+  box-shadow: 0.3rem 0.3rem 0.3rem rgba(0,0,0,0.3);
+}
+ul {
+  display: inline-block;
+  list-style-type: none;
+  
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+li {
+  position: relative;
+  display: inline-block;
+  float: left;
+  height: 100%;
+  padding: 0 1rem;
+  font-family: 'Open Sans';
+  font-size: 2rem;
+  line-height: 5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  transform: skewX(30deg);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  backface-visibility: hidden;
+}
+.hover-hack {
+  z-index: 3;
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  cursor: pointer;
+  transform: skewX(30deg);
+  
+  &.hov-1 {
+    @include navHover(0, 8rem);
+  }
+  &.hov-2 {
+    @include navHover(8rem, 8.6rem);
+  }
+  &.hov-3 {
+    @include navHover(16.6rem, 10.7rem);
+  }
+  &.hov-4 {
+    @include navHover(27.3rem, 12.4rem);
+  }
+  &.hov-5 {
+    @include navHover(39.7rem, 11rem);
+  }
+}
+.magic {
+  z-index: 1;
+  position: absolute;
+  top: -0.5rem;
+  left: 2.1rem;
+  width: 8rem;
+  height: 5.5rem;
+  overflow: hidden;
+  background: #f47321;
+  border-radius: 0.5rem;
+  transition: transform 0.5s cubic-bezier(.77,.37,.71,1.27), width 0.5s cubic-bezier(.77,.37,.71,1.27);
+  box-shadow: 0 0.5rem 0 #dc6519;
+  
+  .clone {
+    z-index: 2;
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    width: 50.8rem;
+    height: 5rem;
+    transition: transform 0.5s cubic-bezier(.77,.37,.71,1.27);
+    
+    li {
+      color: #000;
+      // HACKS, HACKS EVERYWHERE
+      -webkit-font-smoothing: antialiased;
+      backface-visibility: hidden;
+      transform: translate3d(0,0,0) skewX(30deg) perspective(1px);
+    }
+  }
+}

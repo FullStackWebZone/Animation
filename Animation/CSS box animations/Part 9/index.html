@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	
+	</head>
+	<body>
+		<div class="outer">
+    
+    <input type="checkbox" id="usePerspective" class="hidden" onchange="setActive(this);" checked>
+    <input type="checkbox" id="runAnimation" class="hidden" onchange="setAnimation(this);">
+    <div class="labels">
+        <label for="usePerspective" class="usePerspective">
+            Use perspective
+        </label>
+        <label for="runAnimation" class="runAnimation">
+            Run animation
+        </label>
+    </div>
+
+    <div class="slider1">
+        <input type="range" class="vertical" data-var="prespective" data-unit="px" min="250" max="2500" value="1000" oninput="setCssVariables(this);">
+    </div>
+
+    <div class="container">
+        <div class="cube">
+            <div class="side front"></div>
+            <div class="side left"></div>
+            <div class="side right"></div>
+            <div class="side back"></div>
+            <div class="side top"></div>
+            <div class="side bottom"></div>
+        </div>
+    </div>
+
+    <div class="slider2">
+        <input type="range" class="vertical" data-var="originVertical" data-unit="%" min="-100" max="200" value="0" oninput="setCssVariables(this);">
+    </div>
+
+    <div class="slider3">
+        <input type="range" class="horizontal" data-var="originHorizontal" data-unit="%" min="-100" max="200" value="100" oninput="setCssVariables(this);">
+    </div>
+
+</div>
+<script type="text/javascript">
+	function setCssVariables(obj) {
+    document.documentElement.style.setProperty(`--${obj.dataset.var}`, obj.value + obj.dataset.unit);
+}
+
+function setActive(obj) {
+
+    document.querySelectorAll('input[type="range"]').forEach(e => {
+        e.disabled = !obj.checked
+    });
+    document.documentElement.style.setProperty('--prespective', obj.checked ? (document.querySelector('.slider1 > input').value + 'px') : 'none');
+}
+
+function setAnimation(obj) {
+    if (obj.checked) {
+        document.querySelector('.cube').classList.add('animated')
+    } else {
+        document.querySelector('.cube').classList.remove('animated')
+    }
+}
+</script>
+	</body>
+</html>

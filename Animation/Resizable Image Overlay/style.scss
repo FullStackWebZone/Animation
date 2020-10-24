@@ -1,0 +1,89 @@
+// @import "compass/css3";
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-size: 0;
+}
+h1 {
+  font-size: 3vw;
+  margin: 0 0 1vw;
+}
+.cont {
+  position: relative;
+  width: 30vw;
+  display: inline-block;
+  line-height: 0;
+  vertical-align: top;
+  margin: 0.5vw;
+  
+  &.big {
+    width: 90vw;
+  }
+  
+  img {
+    width: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 25px;
+    max-width: 100%;
+    overflow: hidden;
+    resize: horizontal;
+    background-size: cover;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 13px; height: 13px;
+      background: linear-gradient(-45deg, white 50%, transparent 0);
+      background-clip: content-box;
+      cursor: ew-resize;
+      -webkit-filter: drop-shadow(0 0 2px black);
+      filter: drop-shadow(0 0 2px black);
+    }
+    
+    &.first {
+      background-color: rgba(50,50,150, 0.8);
+      @supports(background-blend-mode: screen) {
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/photoshop-face-after.jpg');
+      }
+      background-blend-mode: color-dodge;
+    }
+    
+    &.second {
+      background-color: rgba(40,41,19, 0.8);
+      @supports(background-blend-mode: screen) {
+        background-image: url('https://tympanus.net/Development/HoverEffectIdeas/img/7.jpg');
+      }
+      background-blend-mode: color-dodge;
+    }
+    
+    &.thrird {
+      background-color: rgba(50, 5, 3, 0.8);
+      @supports(background-blend-mode: screen) {
+        background-image: url('https://i.imgur.com/dkMe9KA.jpg');
+      }
+      background-blend-mode: color-dodge;
+    }
+    
+    &.fourth {
+      width: 100px;
+      background-color: rgba(155, 255, 255, 0.7);
+      @supports(background-blend-mode: screen) {
+        background-image: url('https://i.imgur.com/fXp6r5l.jpg');
+      }
+      background-blend-mode: luminosity;
+    }
+  }
+}

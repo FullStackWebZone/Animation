@@ -1,0 +1,156 @@
+body {
+  background-color: #F0F0F0;
+  text-align: center;
+}
+
+.icon-btn {
+  background: radial-gradient(circle farthest-side at 30% 15%, white, #B2B2B2);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 75px;
+  line-height: 100px;
+  margin: 25px;
+  position: relative;
+  text-align: center;
+  -webkit-animation: jump 2s infinite;
+  animation: jump 2s infinite;
+}
+
+.wrapper {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  position: relative;
+}
+
+/* Circle inside */
+.icon-btn span {
+  z-index: 10;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  -webkit-transition: width 0.5s, height 0.5s;
+  transition: width 0.5s, height 0.5s;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  overflow: hidden;
+}
+
+.icon-btn span .clone {
+  color: #fff;
+  left: -50px;
+  top: -50px;
+  -webkit-transition: top 0.5s, left 0.5s;
+  transition: top 0.5s, left 0.5s;
+}
+
+.icon-btn:hover span {
+  width: 100px;
+  height: 100px;
+}
+
+.icon-btn:hover .clone {
+  left: 0;
+  top: 0;
+}
+
+.facebook span {
+  background: radial-gradient(circle farthest-side at 30% 15%, #FFF, #ADB9D4 25%, #3B5998 80%);
+}
+
+.twitter span {
+  background: radial-gradient(circle farthest-side at 30% 15%, #FFF, #C6E0FF 25%, #4099FF 80%);
+}
+
+.google-plus span {
+  background: radial-gradient(circle farthest-side at 30% 15%, #FFF, #F4CEC4 25%, #DB5A3C 80%);
+}
+
+.icon-btn i {
+  background: none;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 90px;
+  font-size: 50px;
+  z-index: 10;
+}
+
+.icon-btn .icon-facebook {
+  color: #3B5998;
+}
+
+.icon-btn .icon-twitter {
+  color: #4099FF;
+}
+
+.icon-btn .icon-google-plus {
+  color: #DB5A3C;
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+}
+
+/* SHADOW */
+.shadow {
+  width: 46px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 50%;
+  margin-top: -10px;
+  border-radius: 50%;
+  -webkit-animation: shadow 2s infinite;
+  animation: shadow 2s infinite;
+}
+
+/* KEYFRAMES */
+@-webkit-keyframes shadow {
+  50% {
+    -webkit-transform: scale(1.4);
+  }
+}
+
+@keyframes shadow {
+  50% {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+  }
+}
+
+@-webkit-keyframes jump {
+  0% {
+    bottom: 20px;
+  }
+  50% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 20px;
+  }
+}
+
+@keyframes jump {
+  0% {
+    bottom: 20px;
+  }
+  50% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 20px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

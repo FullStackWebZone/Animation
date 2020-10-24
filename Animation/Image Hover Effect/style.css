@@ -1,0 +1,37 @@
+ 
+*
+{
+	margin: 0;
+	padding: 0;	
+	box-sizing: border-box;
+	font-family: consolas;
+}
+body
+{
+	background: #000;
+}
+html
+{
+	font-size: 62.5%;
+}
+section
+{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background: url(bg.jpg);
+	background-size: cover;
+	clip-path: circle(20rem at var(--x) var(--y)); 
+}
+
+@media(max-width:998px){
+	html{
+	font-size: 55%;
+	}
+}
+
+@media(max-width:768px){
+	html{
+	font-size: 45%;
+	}
+}

@@ -1,0 +1,392 @@
+// @import "compass/css3";
+
+@mixin coreBefore($backColor, $imgUrl, $blendMode) {
+  background-color: $backColor;
+  background-image: url('#{$imgUrl}');
+  background-blend-mode: $blendMode;
+}
+@mixin scalePls($prop) {
+  -webkit-transform: scale($prop);
+  -moz-transform: scale($prop);
+  -o-transform: scale($prop);
+  transform: scale($prop);
+}
+@mixin transitionPls($seconds) {
+  -webkit-transition: $seconds;
+  -moz-transition: $seconds;
+  -o-transition: $seconds;
+  transition: $seconds;
+}
+@mixin transOriginPls($first, $second) {
+  -webkit-transform-origin: $first $second;
+  -moz-transform-origin: $first $second;
+  -o-transform-origin: $first $second;
+  -ms-transform-origin: $first $second;
+  transform-origin: $first $second;
+}
+@mixin transDelayPls($sec) {
+  -webkit-transition-delay: $sec;
+  -moz-transition-delay: $sec;
+  -o-transition-delay: $sec;
+  transition-delay: $sec;
+}
+@mixin rotatePls($deg) {
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  -o-transform: rotate($deg);
+  transform: rotate($deg);
+}
+@mixin translateXWithScalePls($scale, $val) {
+  -webkit-transform: scale($scale) translateX($val);
+  -moz-transform: scale($scale) translateX($val);
+  -ms-transform: scale($scale) translateX($val);
+  -o-transform: scale($scale) translateX($val);
+  transform: scale($scale) translateX($val);
+}
+@mixin scaleWithRotatePls($scale, $deg) {
+  -webkit-transform: scale($scale) rotate($deg);
+  -moz-transform: scale($scale) rotate($deg);
+  -ms-transform: scale($scale) rotate($deg);
+  -o-transform: scale($scale) rotate($deg);
+  transform: scale($scale) rotate($deg);
+}
+.innerBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+}
+*, *:before, *:after {
+  @include transitionPls(.5s);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 0px;
+}
+body {
+  padding-top: 20px;
+}
+.container {
+  margin: 0 auto;
+  text-align: center;
+}
+.elem {
+  width: 32vw;
+  display: inline-block;
+  color: white;
+  font-size: 2em;
+  position: relative;
+  height: 20vw;
+  overflow: hidden;
+  will-change: transform;
+}
+.elem:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  will-change: transform, opacity;
+}
+.elem:after {
+  content: "";
+  position: absolute;
+  will-change: transform;
+}
+.elem img {
+  width: 32vw;
+  height: 20vw;
+  will-change: transform;
+}
+.elem:hover:before {
+  opacity: 1;
+}
+
+/* FIRST ELEMENT */
+.first:before {
+  @include coreBefore(lightBlue, "https://tympanus.net/Development/HoverEffectIdeas/img/1.jpg",
+    luminosity);
+}
+.first:after {
+  @extend .innerBox;
+  opacity: 0;
+  border: .15vw solid #fff;
+  @include scalePls(0.5);
+}
+.first:hover:after {
+  opacity: 1;
+  @include scalePls(0.95);
+}
+
+/* SECOND ELEMENT */
+.second:before {
+  @include coreBefore(#E85858, "https://tympanus.net/Development/HoverEffectIdeas/img/2.jpg",
+    darken);
+}
+.partialBorder {
+  @extend .innerBox;
+  @include scalePls(0.5);
+  opacity: 0;
+}
+.partialBorder > div {
+  position: absolute;
+  height: 10%;
+  width: 10%;
+  border: .15vw solid #fff;
+}
+.partialBorder .leftTop {
+  left: 0;
+  top: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.partialBorder .rightTop {
+  right: 0;
+  top: 0;
+  border-left: none;
+  border-bottom: none;
+}
+.partialBorder .leftBot {
+  left: 0;
+  bottom: 0;
+  border-right: none;
+  border-top: none;
+}
+.partialBorder .rightBot {
+  right: 0;
+  bottom: 0;
+  border-left: none;
+  border-top: none;
+}
+.second:hover .partialBorder {
+  opacity: 1;
+  @include scalePls(0.95);
+}
+
+/* THRIRD ELEMENT */
+.thrird:before {
+  @include coreBefore(#34C7A5, "https://tympanus.net/Development/HoverEffectIdeas/img/3.jpg",
+    exclusion);
+  @include scalePls(1.3);
+}
+.thrird img {
+  @include scalePls(1.3);
+}
+.thrird:hover img, .thrird:hover:before {
+  @include scalePls(1);
+}
+.thrird .line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: .1vw;
+  background: #fff;
+  z-index: 500;
+  @include transOriginPls(50%, 50%);
+}
+.thrird:hover .line.topToBot {
+  @include rotatePls(32deg);
+}
+.thrird:hover .line.botToTop {
+  @include rotatePls(-32deg);
+}
+
+/* FOURTH ELEMENT */
+.fourth:before {
+  @include coreBefore(#A7BA38, "https://tympanus.net/Development/HoverEffectIdeas/img/4.jpg",
+    luminosity);
+  @include scalePls(1.3);
+}
+.fourth img {
+  @include scalePls(1.3);
+}
+.fourth:hover img, .fourth:hover:before {
+  @include translateXWithScalePls(1.3, 50px);
+}
+.fourth .lineCont {
+  overflow: hidden;
+  @extend .innerBox;
+  @include scalePls(.95);
+}
+.fourth .line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: .1vw;
+  background: #fff;
+  @include transOriginPls(0, 0);
+  will-change: transform;
+}
+.fourth:hover .line.top {
+  top: 0;
+}
+.fourth .line.right {
+  @include transDelayPls(.1s);
+}
+.fourth:hover .line.right {
+  left: 100%;
+  top: 0;
+  @include rotatePls(90deg);
+  width: 62.5%;
+}
+.fourth .line.bottom {
+  @include transDelayPls(.2s);
+}
+.fourth:hover .line.bottom {
+  top: -webkit-calc(100% - .1vw);
+  top: -moz-calc(100% - .1vw);
+  top: calc(100% - .1vw);
+}
+.fourth .line.left {
+  @include transDelayPls(.3s);
+}
+.fourth:hover .line.left {
+  left: 0;
+  top: 100%;
+  @include rotatePls(-90deg);
+  width: 62.5%;
+}
+
+/* FIFTH ELEMENT */
+.fifth:before {
+  @include coreBefore(#C85ED6, "https://tympanus.net/Development/HoverEffectIdeas/img/5.jpg",
+    difference);
+}
+.fifth:before, .fifth img {
+	@include scalePls(1.2);
+}
+.fifth:hover:before, .fifth:hover img {
+  @include scalePls(1.1);
+}
+.fifth:after {
+  @extend .innerBox;
+  border: 5px solid #fff;
+  height: 50%;
+  @include scalePls(.9);
+}
+.fifth:hover:after {
+  top: 20%;
+}
+.fifth .left, .fifth .right {
+  position: absolute;
+  font-size: 2vw;
+  z-index: 100;
+}
+.fifth .left {
+  left: 13%;
+  top: 10%;
+}
+.fifth:hover .left {
+  top: 54%;
+}
+.fifth .right {
+  left: 40%;
+  top: 110%;
+}
+.fifth:hover .right {
+  top: 54%;
+}
+/* SIXTH ELEMENT */
+.sixth:before {
+  @include coreBefore(#5067E6, "https://tympanus.net/Development/HoverEffectIdeas/img/6.jpg",
+    hard-light);
+}
+.sixth .reveal {
+  @extend .innerBox;
+  height: 30%;
+  max-width: 0%;
+  top: 70%;
+  overflow: hidden;
+}
+.sixth .reveal span {
+  position: absolute;
+  font-size: 2vw;
+  top: 0;
+  left: 2.4vw;
+  white-space:nowrap;
+}
+.sixth:hover .reveal {
+  max-width: 50%;
+}
+
+/* SEVENTH ELEMENT */
+.seventh:before {
+  @include coreBefore(#282913, "https://tympanus.net/Development/HoverEffectIdeas/img/7.jpg",
+    color-dodge);
+}
+.seventh .bird {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  left: 65%;
+  top: 15%;
+  font-size: 2vw;
+  color: #000;
+  z-index: 100;
+  @include transOriginPls(0,0);
+  @include scaleWithRotatePls(.7, 30deg);
+}
+.seventh:hover .bird {
+  opacity: 1;
+  @include scaleWithRotatePls(1, 30deg);
+}
+
+/* EIGHTH ELEMENT */
+.eighth:before {
+  @include coreBefore(#2C5C4D, "https://tympanus.net/Development/HoverEffectIdeas/img/8.jpg",
+    saturation);
+}
+.eighth .reveal {
+  @extend .innerBox;
+  left: 80%;
+  width: 20%;
+  max-height: 0%;
+  overflow: hidden;
+}
+.eighth .reveal span {
+  position: absolute;
+  font-size: 2vw;
+  top: 10%;
+  white-space:nowrap;
+  padding: 0.2vw;
+  border: 3px solid #fff;
+  @include rotatePls(90deg);
+  @include transOriginPls(0, 0);
+}
+.eighth:hover .reveal {
+  max-height: 100%;
+}
+
+/* NINTH ELEMENT */
+.ninth:before {
+  @include coreBefore(#B35977, "https://tympanus.net/Development/HoverEffectIdeas/img/9.jpg",
+    soft-light);
+  @include transOriginPls(50%, 50%);
+  @include rotatePls(180deg);
+}
+.ninth .umad {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  left: 40%;
+  top: 75%;
+  font-size: 2vw;
+  color: #fff;
+  z-index: 100;
+  @include rotatePls(180deg);
+}
+.ninth:hover .umad {
+  opacity: 1;
+  @include rotatePls(0deg);
+}
+

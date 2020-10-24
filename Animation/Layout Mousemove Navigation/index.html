@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+	<div class="scene">
+		<div class="bg"></div>
+		<div class="content">
+			<div class="block">
+				<img class="prime-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-1.jpg"
+					alt="" />
+				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-2.jpg" alt=""
+					class="sec-img" />
+				<h2 class="link">Whatever 1</h2>
+				<span class="sec-info">Secondary information 1</span>
+			</div>
+			<div class="block">
+				<img class="prime-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-3.jpg"
+					alt="" />
+				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-4.jpg" alt=""
+					class="sec-img" />
+				<h2 class="link">Whatever 2</h2>
+				<span class="sec-info">Secondary information 2</span>
+			</div>
+			<div class="block">
+				<img class="prime-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-5.jpg"
+					alt="" />
+				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-6.jpg" alt=""
+					class="sec-img" />
+				<h2 class="link">Whatever 3</h2>
+				<span class="sec-info">Secondary information 3</span>
+			</div>
+			<div class="block">
+				<img class="prime-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-7.jpg"
+					alt="" />
+				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-8.jpg" alt=""
+					class="sec-img" />
+				<h2 class="link">Whatever 4</h2>
+				<span class="sec-info">Secondary information 4</span>
+			</div>
+			<div class="block">
+				<img class="prime-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-9.jpg"
+					alt="" />
+				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/mousover-img-10.jpg" alt=""
+					class="sec-img" />
+				<h2 class="link">Whatever 5</h2>
+				<span class="sec-info">Secondary information 5</span>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			function debounce(func, wait, immediate) {
+				var timeout;
+				return function () {
+					var context = this, args = arguments;
+					clearTimeout(timeout);
+					timeout = setTimeout(function () {
+						timeout = null;
+						if (!immediate) func.apply(context, args);
+					}, wait);
+					if (immediate && !timeout) func.apply(context, args);
+				};
+			};
+
+			var winW = $(window).width(),
+				winH = $(window).height(),
+				winWHalf = winW / 2,
+				winHHalf = winH / 2,
+				$cont = $(".content"),
+				$bg = $(".bg"),
+				contW = $cont.width(),
+				contH = $cont.height(),
+				bgW = $bg.width(),
+				bgH = $bg.height(),
+				diffX = (winW - contW) / 2,
+				diffY = (winH - contH) / 2;
+
+			var finalX = 0,
+				finalY = 0,
+				finalBgX = 0,
+				finalBgY = 0;
+
+			var moveContent = function (e) {
+				console.log(bgW + " " + winW);
+				var x = e.pageX,
+					y = e.pageY;
+
+				finalX = (x - winWHalf) * (contW / winW) / 2;
+				finalY = (y - winHHalf) * (contH / winH) / 2;
+
+				finalBgX = (x - winWHalf) * (bgW / winW) / 20;
+				finalBgY = (y - winHHalf) * (bgH / winH) / 20;
+
+				$cont.css("transform", "translate3D(" + (0 - finalX) + "px, " + (0 - finalY) + "px, 0)");
+
+				$bg.css("transform", "translate3D(" + (0 - finalBgX) + "px, " + (0 - finalBgY) + "px, 0)");
+
+			};
+
+			$(document).on("mousemove", moveContent);
+
+			$(window).on("resize", function () {
+				winW = $(window).width();
+				winH = $(window).height();
+				winWHalf = winW / 2;
+				winHHalf = winH / 2;
+				contW = $cont.width();
+				contH = $cont.height();
+				bgW = $bg.width();
+				bgH = $bg.height();
+				diffX = (winW - contW) / 2;
+				diffY = (winH - contH) / 2;
+
+				moveContent({ pageX: winWHalf, pageY: winHHalf });
+			});
+
+		});
+	</script>
+</body>
+
+</html>

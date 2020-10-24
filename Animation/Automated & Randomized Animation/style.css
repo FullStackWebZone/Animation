@@ -1,0 +1,204 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  height: 100%;
+  font-size: 62.5%;
+  background: #64B5F6;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  html, body {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 40%;
+  }
+}
+
+.nav {
+  position: relative;
+  width: 55rem;
+  height: 5rem;
+  margin: 10rem auto 0;
+  padding: 0 1rem;
+  background: #25f1b0;
+  -webkit-transform: skewX(-30deg);
+          transform: skewX(-30deg);
+  text-align: center;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+ul {
+  display: inline-block;
+  list-style-type: none;
+}
+
+ul:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+li {
+  position: relative;
+  display: inline-block;
+  float: left;
+  height: 100%;
+  padding: 0 1rem;
+  font-family: 'Open Sans';
+  font-size: 2rem;
+  line-height: 5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-transform: skewX(30deg);
+          transform: skewX(30deg);
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.hover-hack {
+  z-index: 3;
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  cursor: pointer;
+  -webkit-transform: skewX(30deg);
+          transform: skewX(30deg);
+}
+
+.hover-hack.hov-1 {
+  left: 2.1rem;
+  width: 8rem;
+}
+
+.hover-hack.hov-1:hover ~ .magic {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  width: 8rem;
+}
+
+.hover-hack.hov-1:hover ~ .magic .clone {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.hover-hack.hov-2 {
+  left: 10.1rem;
+  width: 8.6rem;
+}
+
+.hover-hack.hov-2:hover ~ .magic {
+  -webkit-transform: translateX(8rem);
+          transform: translateX(8rem);
+  width: 8.6rem;
+}
+
+.hover-hack.hov-2:hover ~ .magic .clone {
+  -webkit-transform: translateX(-8rem);
+          transform: translateX(-8rem);
+}
+
+.hover-hack.hov-3 {
+  left: 18.7rem;
+  width: 10.7rem;
+}
+
+.hover-hack.hov-3:hover ~ .magic {
+  -webkit-transform: translateX(16.6rem);
+          transform: translateX(16.6rem);
+  width: 10.7rem;
+}
+
+.hover-hack.hov-3:hover ~ .magic .clone {
+  -webkit-transform: translateX(-16.6rem);
+          transform: translateX(-16.6rem);
+}
+
+.hover-hack.hov-4 {
+  left: 29.4rem;
+  width: 12.4rem;
+}
+
+.hover-hack.hov-4:hover ~ .magic {
+  -webkit-transform: translateX(27.3rem);
+          transform: translateX(27.3rem);
+  width: 12.4rem;
+}
+
+.hover-hack.hov-4:hover ~ .magic .clone {
+  -webkit-transform: translateX(-27.3rem);
+          transform: translateX(-27.3rem);
+}
+
+.hover-hack.hov-5 {
+  left: 41.8rem;
+  width: 11rem;
+}
+
+.hover-hack.hov-5:hover ~ .magic {
+  -webkit-transform: translateX(39.7rem);
+          transform: translateX(39.7rem);
+  width: 11rem;
+}
+
+.hover-hack.hov-5:hover ~ .magic .clone {
+  -webkit-transform: translateX(-39.7rem);
+          transform: translateX(-39.7rem);
+}
+
+.magic {
+  z-index: 1;
+  position: absolute;
+  top: -0.5rem;
+  left: 2.1rem;
+  width: 8rem;
+  height: 5.5rem;
+  overflow: hidden;
+  background: #f47321;
+  border-radius: 0.5rem;
+  -webkit-transition: width 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27), -webkit-transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  transition: width 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27), -webkit-transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  transition: transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27), width 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  transition: transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27), width 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27), -webkit-transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  -webkit-box-shadow: 0 0.5rem 0 #dc6519;
+          box-shadow: 0 0.5rem 0 #dc6519;
+}
+
+.magic .clone {
+  z-index: 2;
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 50.8rem;
+  height: 5rem;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  transition: -webkit-transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  transition: transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+  transition: transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27), -webkit-transform 0.5s cubic-bezier(0.77, 0.37, 0.71, 1.27);
+}
+
+.magic .clone li {
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0) skewX(30deg) perspective(1px);
+          transform: translate3d(0, 0, 0) skewX(30deg) perspective(1px);
+}
+/*# sourceMappingURL=style.css.map */

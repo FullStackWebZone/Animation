@@ -1,0 +1,208 @@
+// @import "compass/css3";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+input[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+/* SASS BASE CLASSES */
+.absPos {
+  position: absolute; 
+  width: 50%;
+  height: 50%;
+  
+  &.top {
+    top: 0;
+  }
+  &.right {
+    left: 50%;
+  }
+  &.bot {
+    top: 50%;
+  }
+  &.left {
+    left: 0;
+  }
+}
+.labelClose {
+  left: auto;
+  bottom: auto;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  z-index: 101;
+  animation: hideAndShow 1s;
+  
+  &:before {
+    content: "+";
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 43px;
+    font-size: 50px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #fff;
+    transform: rotate(45deg);
+    transition: 0.5s;
+  }
+  
+  &:hover:before {
+    transform: rotate(225deg);
+    color: red;
+  }
+}
+.activeBlock {
+  transform: translateZ(0) scale(2.005);
+  z-index: 100;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  h1 {
+    opacity: 0;
+    z-index: 5;
+  }
+  .content {
+    opacity: 1;
+    z-index: 150;
+  }
+}
+/* END OF SASS BASE CLASSES */
+
+.blocks {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  
+  .trigger {
+    @extend .absPos;
+    z-index: 30;
+    //transition: 0.5s;
+    cursor: pointer;
+    
+    &:hover + .block h1 {
+      color: #fff;
+    }
+  }
+  .block {
+    @extend .absPos;
+    font-size: 14px;
+    transition: 0.5s;
+    will-change: transform;
+    //transform-style: preserve-3d;
+    z-index: 5;
+    background-size: cover;
+    
+    &.left.top {
+      //background: #f5bfb8;
+      transform-origin: 0% 0%;
+      background-image: url('https://2.bp.blogspot.com/_F91XpngCLn8/S-cdscZPSZI/AAAAAAAAADE/5vL-lYz1Wws/s1600/watchmen_by_imladriselleth.jpg');
+    }
+    &.right.top {
+      //background: #c8f4f2;
+      transform-origin: 100% 0%;
+      background-image: url('http://images5.alphacoders.com/401/401566.jpg');
+    }
+    &.left.bot {
+      //background: #c8f4c8;
+      transform-origin: 0% 100%;
+      background-image: url('http://images6.alphacoders.com/332/332890.jpg');
+    }
+    &.right.bot {
+      //background: #eef4c8;
+      transform-origin: 100% 100%;
+      background-image: url('https://i.imgur.com/fXp6r5l.jpg');
+    }
+    
+    h1 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      text-transform: uppercase;
+      color: #aaa;
+      transition: 0.5s;
+      will-change: opacity;
+    }
+    
+    .content {
+      opacity: 0;
+      z-index: 1;
+      padding: 2em;
+      text-align: left;
+      transition: 0.5s;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+      will-change: opacity;
+      //transition-delay: 0.5s;
+      
+      h2 {
+        font-size: 2.5em;
+        margin-bottom: 1em;
+      }
+      p {
+        font-size: 1em;
+        margin: 0.5em 0;
+      }
+    }
+  }
+  
+  #left-top:checked ~ .block.left.top {
+    @extend .activeBlock;
+  }
+  #left-top:checked ~ .trigger.left.top {
+    @extend .labelClose;
+  }
+  #right-top:checked ~ .block.right.top {
+    @extend .activeBlock;
+  }
+  #right-top:checked ~ .trigger.right.top {
+    @extend .labelClose;
+  }
+  #left-bot:checked ~ .block.left.bot {
+    @extend .activeBlock;
+  }
+  #left-bot:checked ~ .trigger.left.bot {
+    @extend .labelClose;
+  }
+  #right-bot:checked ~ .block.right.bot {
+    @extend .activeBlock;
+  }
+  #right-bot:checked ~ .trigger.right.bot {
+    @extend .labelClose;
+  }
+}
+/* fix for position absolute label movement outside block */
+@keyframes hideAndShow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  90% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
